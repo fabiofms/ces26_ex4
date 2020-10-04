@@ -32,7 +32,7 @@ app.get('/process_get', function(req,res){
 })
 
 app.get('/view_list', function(req,res){
-  res.send(JSON.stringify(shopping_list));
+  res.json(shopping_list);
 })
 
 app.post('/process_post', urlencodedParser, function(req, res){
@@ -45,7 +45,8 @@ app.post('/process_post', urlencodedParser, function(req, res){
 })
 
 app.post('/file_upload', upload.single('file'),
-  (req,res) => res.send('<h2>Upload realizado com sucesso</h2>'));
+  (req,res) => res.sendFile(__dirname + '/index.html')
+);
 
 var server = app.listen(8081, function(){
   var host = server.address().address
