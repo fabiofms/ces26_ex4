@@ -3,9 +3,6 @@ const express = require('express');
 const app = express();
 app.use(express.static('public'));
 
-const bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({extended:false});
-
 const path = require('path');
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -33,15 +30,6 @@ app.get('/process_get', function(req,res){
 
 app.get('/view_list', function(req,res){
   res.json(shopping_list);
-})
-
-app.post('/process_post', urlencodedParser, function(req, res){
-  response={
-    first_name: req.body.first_name,
-    last_name: req.body.last_name
-  }
-  console.log(response);
-  res.send(JSON.stringify(response));
 })
 
 app.post('/file_upload', upload.single('file'),
